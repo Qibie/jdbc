@@ -24,15 +24,15 @@ public class CRUD {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			// 2.建立连接
+			// 2.寤虹珛杩炴帴
 			conn = JdbcUtils.getConnection();
 			// conn = JdbcUtilsSing.getInstance().getConnection();
-			// 3.创建语句
+			// 3.鍒涘缓璇彞
 			st = conn.createStatement();
 
 			String sql = "delete from user where id > 4";
 
-			// 4.执行语句
+			// 4.鎵ц璇彞
 			int i = st.executeUpdate(sql);
 
 			System.out.println("i=" + i);
@@ -46,15 +46,15 @@ public class CRUD {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			// 2.建立连接
+			// 2.寤虹珛杩炴帴
 			conn = JdbcUtils.getConnection();
 			// conn = JdbcUtilsSing.getInstance().getConnection();
-			// 3.创建语句
+			// 3.鍒涘缓璇彞
 			st = conn.createStatement();
 
 			String sql = "update user set money = money + 10";
 
-			// 4.执行语句
+			// 4.鎵ц璇彞
 			int i = st.executeUpdate(sql);
 
 			System.out.println("i=" + i);
@@ -68,15 +68,15 @@ public class CRUD {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			// 2.建立连接
+			// 2.寤虹珛杩炴帴
 			conn = JdbcUtils.getConnection();
 			// conn = JdbcUtilsSing.getInstance().getConnection();
-			// 3.创建语句
+			// 3.鍒涘缓璇彞
 			st = conn.createStatement();
 
 			String sql = "insert into user(name,birthday, money) values ('name1', '1987-01-01', 400) ";
 
-			// 4.执行语句
+			// 4.执鎵ц璇彞
 			int i = st.executeUpdate(sql);
 
 			System.out.println("i=" + i);
@@ -90,16 +90,16 @@ public class CRUD {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			// 2.建立连接
+			// 2.寤虹珛杩炴帴
 			conn = JdbcUtils.getConnection();
 			// conn = JdbcUtilsSing.getInstance().getConnection();
-			// 3.创建语句
+			// 3.鍒涘缓璇彞
 			st = conn.createStatement();
 
-			// 4.执行语句
+			// 4.执鎵ц璇彞
 			rs = st.executeQuery("select id, name, money, birthday  from user");
 
-			// 5.处理结果
+			// 5.澶勭悊缁撴灉
 			while (rs.next()) {
 				System.out.println(rs.getObject("id") + "\t" + rs.getObject("name") + "\t" + rs.getObject("birthday")
 						+ "\t" + rs.getObject("money"));

@@ -10,7 +10,7 @@ import java.sql.Statement;
  * 
  * 2008-12-6
  * 
- * @author <a href="mailto:liyongibm@hotmail.com">ÀîÓÂ</a>
+ * @author <a href="mailto:liyongibm@hotmail.com">æå‹‡</a>
  * 
  */
 public class Base {
@@ -29,18 +29,18 @@ public class Base {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			// 2.½¨Á¢Á¬½Ó
+			// 2.å»ºç«‹è¿æ¥
 			conn = JdbcUtils.getConnection();
 			// conn = JdbcUtilsSing.getInstance().getConnection();
-			// 3.´´½¨Óï¾ä
+			// 3.åˆ›å»ºè¯­å¥
 			st = conn.createStatement();
 
-			// 4.Ö´ĞĞÓï¾ä
+			// 4.æ‰§è¡Œè¯­å¥
 			rs = st.executeQuery("select * from user");
 
-			// 5.´¦Àí½á¹û
+			// 5.å¤„ç†ç»“æœ
 			while (rs.next()) {
-				// ²ÎÊıÖĞµÄ1,2,3,4ÊÇÖ¸sqlÖĞµÄÁĞË÷Òı
+				// å‚æ•°ä¸­çš„1,2,3,4æ˜¯æŒ‡sqlä¸­çš„åˆ—ç´¢å¼•
 				System.out.println(rs.getObject(1) + "\t" + rs.getObject(2)
 						+ "\t" + rs.getObject(3) + "\t" + rs.getObject(4));
 			}
@@ -51,30 +51,30 @@ public class Base {
 	}
 
 	static void test() throws SQLException, ClassNotFoundException {
-		// 1.×¢²áÇı¶¯
+		// 1.æ³¨å†Œé©±åŠ¨
 		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		System.setProperty("jdbc.drivers", "com.mysql.jdbc.Driver");
-		Class.forName("com.mysql.jdbc.Driver");// ÍÆ¼ö·½Ê½
+		Class.forName("com.mysql.jdbc.Driver");// æ¨èæ–¹å¼
 
-		// 2.½¨Á¢Á¬½Ó
+		// 2.å»ºç«‹è¿æ¥
 		String url = "jdbc:mysql://localhost:3306/jdbc";
 		String user = "root";
 		String password = "";
 		Connection conn = DriverManager.getConnection(url, user, password);
 
-		// 3.´´½¨Óï¾ä
+		// 3.åˆ›å»ºè¯­å¥
 		Statement st = conn.createStatement();
 
-		// 4.Ö´ĞĞÓï¾ä
+		// 4.æ‰§è¡Œè¯­å¥
 		ResultSet rs = st.executeQuery("select * from user");
 
-		// 5.´¦Àí½á¹û
+		// 5.å¤„ç†ç»“æœ
 		while (rs.next()) {
 			System.out.println(rs.getObject(1) + "\t" + rs.getObject(2) + "\t"
 					+ rs.getObject(3) + "\t" + rs.getObject(4));
 		}
 
-		// 6.ÊÍ·Å×ÊÔ´
+		// 6.é‡Šæ”¾èµ„æº
 		rs.close();
 		st.close();
 		conn.close();
