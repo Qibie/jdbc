@@ -29,6 +29,8 @@ public class TxTest {
 		try {
 			conn = JdbcUtils.getConnection();
 			conn.setAutoCommit(false);
+			// 设置事务隔离级别level 选取Connection接口中静态常量
+			conn.setTransactionIsolation(Connection.TRANSACTION_NONE);
 			st = conn.createStatement();
 			String sql = "update user set money = money - 10 where id = 1";
 			st.executeUpdate(sql);
