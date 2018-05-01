@@ -26,10 +26,13 @@ public class UserDaoTest {
 		UserDao userDao = DaoFactory.getInstance().getUserDao();
 		// System.out.println(userDao);
 		// 插入操作
-//		User user = new User();
-//		user.setBirthday(new Date());
-//		user.setName("dao name1");
-//		user.setMoney(1000.0f);
+		User user = new User();
+		user.setBirthday(new Date());
+		user.setName("dao name2");
+		user.setMoney(1000.0f);
+		userDao.addUser(user);
+		System.out.println(user.getId());
+
 
 		// userDao.addUser(user);
 		// 查找
@@ -37,9 +40,9 @@ public class UserDaoTest {
 		// System.out.println(u.getId());
 		
 		// 更新
-		User u = userDao.getUser(4);
-		u.setMoney(20002.1f);
-		userDao.update(u);
+//		User u = userDao.getUser(4);
+//		u.setMoney(20002.1f);
+//		userDao.update(u);
 		
 		// 删除
 //		 User u1 = userDao.getUser(5);

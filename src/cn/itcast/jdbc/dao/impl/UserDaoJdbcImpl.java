@@ -36,6 +36,11 @@ public class UserDaoJdbcImpl implements UserDao {
 			ps.setDate(2, new Date(user.getBirthday().getTime()));
 			ps.setFloat(3, user.getMoney());
 			ps.executeUpdate();
+			
+			rs = ps.getGeneratedKeys();
+			if(rs.next()) {
+				user.setId(rs.getInt(1));
+			}
 		} catch (SQLException e) {
 			throw new DaoException(e.getMessage(), e);
 		} finally {
