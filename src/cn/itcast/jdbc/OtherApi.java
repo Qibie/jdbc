@@ -19,10 +19,39 @@ public class OtherApi {
 	/**
 	 * @param args
 	 * @throws SQLException 
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) throws SQLException {
-		int id = create();
-		System.out.println("id:" + id);
+	public static void main(String[] args) throws SQLException, InterruptedException {
+		read();
+		//		int id = create();
+//		System.out.println("id:" + id);
+	}
+	
+	static void read() throws SQLException, InterruptedException {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			// 2.建立连接
+			conn = JdbcUtils.getConnection();
+			// 3.创建语句
+			st = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			// 4.执行语句
+			rs = st.executeQuery("select id, name, money, birthday from user where id < 5");
+			// 5.处理结果
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				System.out.println("show " + id + "...");
+				// 10秒
+				Thread.sleep(100000L);
+				System.out.println(id + "\t" + rs.getObject("name") + "\t"
+						+ rs.getObject("birthday") + "\t"
+						+ rs.getObject("money"));
+			}
+		} finally {
+			JdbcUtils.free(rs, st, conn);
+		}
 	}
 	
 	static int create() throws SQLException {
