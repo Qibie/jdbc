@@ -10,11 +10,11 @@ import java.sql.Statement;
  * 
  * 2008-12-6
  * 
- * @author <a href="mailto:liyongibm@hotmail.com">ÀîÓÂ</a>
+ * @author <a href="mailto:liyongibm@hotmail.com">ï¿½ï¿½ï¿½ï¿½</a>
  * 
  */
 public final class JdbcUtils {
-	private static String url = "jdbc:mysql://localhost:3306/jdbc?useSSL=false";
+	private static String url = "jdbc:mysql://localhost:3306/jdbc?useSSL=false&generateSimpleParameterMetadata=true";
 	private static String user = "root";
 	private static String password = "root";
 
