@@ -13,6 +13,30 @@ public class User {
 	private Date birthday;
 	private float money;
 
+	public User() {
+	}
+	
+	public User(String name) {
+		this.name = name;
+	}
+	
+	public User(float money) {
+		this.money = money;
+	}
+	
+	public void showName() {
+		System.out.println(this.name);
+	}
+	
+	@Override
+	public String toString() {
+		return "id=" + this.id + ",name=" + this.name + ",birthday=" + this.birthday + ",money=" + this.money;
+	}
+	
+	// 私有方法不设置不能被getDeclaredMethod方法拿到
+	private void test() {
+	}
+	
 	public int getId() {
 		return id;
 	}
