@@ -10,10 +10,22 @@ package cn.itcast.jdbc;
  */
 public class Bean {
 	private String name;
+	
+	public Bean() {
+	}
+	
 	public Bean(String n) {
 		this.name = n;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return this.name;
