@@ -20,7 +20,13 @@ public class Base {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		template(); 
+//		template(); 
+		// 不释放资源
+		for (int i = 0; i < 11; i++) {
+			Connection conn = JdbcUtils.getConnection();
+			System.out.println(conn);
+//			JdbcUtils.free(null, null, conn);
+		}
 
 	}
 

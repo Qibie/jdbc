@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * 
+ * JdbcUtil
  * 2008-12-6
- * 
  * @author <a href="mailto:liyongibm@hotmail.com">����</a>
  * 
  */
@@ -17,20 +16,27 @@ public final class JdbcUtils {
 	private static String url = "jdbc:mysql://localhost:3306/jdbc?useSSL=false&generateSimpleParameterMetadata=true";
 	private static String user = "root";
 	private static String password = "root";
+	// 使用封装类来建立连接
+	private static MyDataSource myDataSource = null;
 
 	private JdbcUtils() {
 	}
 
 	static {
 		try {
+			// 注册驱动
 			Class.forName("com.mysql.jdbc.Driver");
+			myDataSource = new MyDataSource();
 		} catch (ClassNotFoundException e) {
 			throw new ExceptionInInitializerError(e);
 		}
 	}
 
 	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(url, user, password);
+		// 没有建立连接池之前的方法 使用DriverManager
+		// return DriverManager.getConnection(url, user, password);
+		// 建立连接池后从封装类中建立连接
+		return myDataSource.getConnection();
 	}
 
 	public static void free(ResultSet rs, Statement st, Connection conn) {
@@ -48,8 +54,11 @@ public final class JdbcUtils {
 			} finally {
 				if (conn != null)
 					try {
-						conn.close();
-					} catch (SQLException e) {
+						// 释放连接
+						// conn.close();
+						// 换成封装类连接池中的连接
+						myDataSource.free(conn);
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 			}
