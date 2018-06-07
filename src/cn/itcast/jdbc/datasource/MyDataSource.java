@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.itcast.jdbc;
+package cn.itcast.jdbc.datasource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +18,8 @@ public class MyDataSource {
 	private static String url = "jdbc:mysql://localhost:3306/jdbc?useSSL=false&generateSimpleParameterMetadata=true";
 	private static String user = "root";
 	private static String password = "root";
-	private LinkedList<Connection> connectionsPool = new LinkedList<>();
+	// 降低访问权限
+	LinkedList<Connection> connectionsPool = new LinkedList<>();
 
 	// 初始连接数
 	private static int initCount = 5;

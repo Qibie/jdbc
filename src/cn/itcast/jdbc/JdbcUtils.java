@@ -1,10 +1,11 @@
 package cn.itcast.jdbc;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import cn.itcast.jdbc.datasource.MyDataSource2;
 
 /**
  * JdbcUtil
@@ -17,7 +18,7 @@ public final class JdbcUtils {
 	private static String user = "root";
 	private static String password = "root";
 	// 使用封装类来建立连接
-	private static MyDataSource myDataSource = null;
+	private static MyDataSource2 myDataSource = null;
 
 	private JdbcUtils() {
 	}
@@ -26,7 +27,7 @@ public final class JdbcUtils {
 		try {
 			// 注册驱动
 			Class.forName("com.mysql.jdbc.Driver");
-			myDataSource = new MyDataSource();
+			myDataSource = new MyDataSource2();
 		} catch (ClassNotFoundException e) {
 			throw new ExceptionInInitializerError(e);
 		}
@@ -55,9 +56,9 @@ public final class JdbcUtils {
 				if (conn != null)
 					try {
 						// 释放连接
-						// conn.close();
+						 conn.close();
 						// 换成封装类连接池中的连接
-						myDataSource.free(conn);
+//						myDataSource.free(conn);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

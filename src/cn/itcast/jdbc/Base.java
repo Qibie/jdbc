@@ -21,11 +21,12 @@ public class Base {
 	 */
 	public static void main(String[] args) throws Exception {
 //		template(); 
-		// 不释放资源
-		for (int i = 0; i < 11; i++) {
+		// 不释放资源，如果没有使用JdbcUtils.free方法，或者其他开发没有使用封装工具类的规范
+		// 而是使用Connection的close方法，关闭的连接就不能放入连接池中
+		for (int i = 0; i < 10; i++) {
 			Connection conn = JdbcUtils.getConnection();
 			System.out.println(conn);
-//			JdbcUtils.free(null, null, conn);
+			JdbcUtils.free(null, null, conn);
 		}
 
 	}
