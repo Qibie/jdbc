@@ -11,6 +11,7 @@ import java.util.LinkedList;
 /**
  * 编写一个基本连接池来实现连接的复用（连接池处理方式使用了先入先出算法，从头部拿，从尾部入）
  * 面向对象编程第一原则：能使用接口就使用接口
+ * 38.标准DataSource接口及数据源的总结介绍
  * @author qibie
  * @createDate:2018-05-22
  * @ProjectName:jdbc
@@ -73,7 +74,10 @@ public class MyDataSource2 {
 		Connection realConn = DriverManager.getConnection(url, user, password);
 		// 通过MyConnection的构造器来获取MyConnection对象
 		// 此处是为了拦截Connection的close()方法
-		MyConnection myConnection = new MyConnection(realConn, this);
-		return myConnection;
+//		MyConnection myConnection = new MyConnection(realConn, this);
+//		return myConnection;
+		// 37.Java的动态代理及使用该技术完善连接代理
+		MyConnectionHandler proxy = new MyConnectionHandler(this);
+		return (MyConnection) proxy.bind(realConn);
 	}
 }
