@@ -58,7 +58,6 @@ public class UserDaoJdbcImpl implements UserDao {
 			conn = JdbcUtils.getConnection();
 			String sql = "select id, name, money, birthday  from user where id=?";
 			ps = conn.prepareStatement(sql);
-			ps = conn.prepareStatement(sql);
 			ps.setInt(1, userId);
 			rs = ps.executeQuery();
 			while (rs.next()) {

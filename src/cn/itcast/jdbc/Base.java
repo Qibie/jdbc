@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * 
  * 2008-12-6
- * 
  * @author <a href="mailto:liyongibm@hotmail.com">李勇</a>
  * 
  */
@@ -25,7 +23,7 @@ public class Base {
 		// 而是使用Connection的close方法，关闭的连接就不能放入连接池中
 		for (int i = 0; i < 10; i++) {
 			Connection conn = JdbcUtils.getConnection();
-			System.out.println(conn);
+			System.out.println(conn.getClass().getName());
 			JdbcUtils.free(null, null, conn);
 		}
 
