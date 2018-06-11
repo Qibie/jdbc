@@ -18,5 +18,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/eclipse/workspace/jdbc/lib/commons/commons-pool.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse/workspace/jdbc/lib/commons/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse/workspace/jdbc/lib/commons/spring-2.5.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

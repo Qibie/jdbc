@@ -45,6 +45,10 @@ public final class JdbcUtils {
 		}
 	}
 
+	public static DataSource getDataSource() {
+		return myDataSource;
+	}
+	
 	public static Connection getConnection() throws SQLException {
 		// 没有建立连接池之前的方法 使用DriverManager
 		// return DriverManager.getConnection(url, user, password);

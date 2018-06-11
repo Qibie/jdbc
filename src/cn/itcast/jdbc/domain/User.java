@@ -12,6 +12,15 @@ public class User {
 	private String name;
 	private Date birthday;
 	private float money;
+	private Date registDate;
+
+	public Date getRegistDate() {
+		return registDate;
+	}
+
+	public void setRegistDate(Date registDate) {
+		this.registDate = registDate;
+	}
 
 	public User() {
 	}
