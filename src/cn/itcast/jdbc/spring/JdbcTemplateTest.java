@@ -4,6 +4,7 @@
 package cn.itcast.jdbc.spring;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,6 +45,30 @@ public class JdbcTemplateTest {
 		System.out.println("dataMap:" + getData(1));
 	}
 
+	// 通过ConnectionCallback接口回调来拿到主键，内部匿名类重写doInConnection方法
+	// 而且内部匿名类
+	static int addUser(final User user) {
+		jdbc.execute(new ConnectionCallback() {
+			
+			@Override
+			public Object doInConnection(Connection con) throws SQLException, DataAccessException {
+				String sql = "insert into user(name, birthday, money) values (?,?,?)";
+				PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, user.getName());
+				ps.setDate(2, new Date(user.getBirthday().getTime()));
+				ps.setFloat(3, user.getMoney());
+				ps.executeUpdate();
+				
+				ResultSet rs = ps.getGeneratedKeys();
+				if(rs.next()) {
+					user.setId(rs.getInt(1));
+				}
+				return null;
+			}
+		});
+		return 1;
+	}
+	
 	// queryForMap
 	static Map getData(int id) {
 		String sql = "select id as userId, name, money, birthday from user where id=" + id;
@@ -69,7 +94,8 @@ public class JdbcTemplateTest {
 		// sql的处理方法，只能比类中的少，不能比类中的多，列名不一致的话，可以使用别名的方式处理
 		String sql = "select id, name, money, birthday from user where id < ?";
 		Object[] args = new Object[] { id };
-		List users = jdbc.query(sql, args, new BeanPropertyRowMapper(User.class));
+		int[] argsTypes = new int[] { Types.INTEGER };
+		List users = jdbc.query(sql, args, argsTypes, new BeanPropertyRowMapper(User.class));
 		return users;
 	}
 
