@@ -30,17 +30,17 @@ public class UserDaoTest {
 		user.setBirthday(new Date());
 		user.setName("dao name2");
 		user.setMoney(1000.0f);
-		userDao.addUser(user);
-		System.out.println(user.getId());
-
-
-		// userDao.addUser(user);
+//		userDao.addUser(user); 
+//		System.out.println(user.getId());
+//
+//
+//		 userDao.addUser(user);
 		// 查找
-		// User u = userDao.findUser(user.getName(), null);
-		// System.out.println(u.getId());
+//		 User u = userDao.findUser(user.getName(), null);
+//		 System.out.println(u.getId());
 		
 		// 更新
-//		User u = userDao.getUser(4);
+//		User u = userDao.getUser(1);
 //		u.setMoney(20002.1f);
 //		userDao.update(u);
 		

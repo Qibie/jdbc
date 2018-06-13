@@ -8,7 +8,7 @@ import cn.itcast.jdbc.domain.User;
  *
  */
 public interface UserDao {
-	public abstract void addUser(User User);
+	public abstract void addUser(User user);
 
 	User getUser(int userId);
 
